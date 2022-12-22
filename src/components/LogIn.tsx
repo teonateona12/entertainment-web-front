@@ -52,12 +52,18 @@ const LogIn = () => {
           value={data.password}
         ></input>
         <button
-          className="mt-9 bg-red-500 text-white p-2 mt-2 rounded"
+          className="mt-9 w-full bg-red-500 text-white p-2 mt-2 rounded"
           type="submit"
           onClick={handleSubmit}
         >
           Login to your account
         </button>
+        <p className="text-white mt-5 text-center">
+          Don't have an account?{" "}
+          <button className="text-red-500">
+            <Link to="/signup">Sign Up</Link>
+          </button>
+        </p>
       </form>
     </div>
   );
