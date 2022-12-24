@@ -3,6 +3,9 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
 const SignUp = () => {
+  const [emailErr, setEmailErr] = useState("");
+  const [passwordErr, setPasswordErr] = useState("");
+
   const navigate = useNavigate();
   const [data, setData] = useState({
     email: "",
@@ -15,6 +18,17 @@ const SignUp = () => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    if (data.email === "") {
+      setEmailErr("Can’t be empty");
+    } else {
+      setEmailErr("");
+    }
+    if (data.password === "") {
+      setPasswordErr("Can’t be empty");
+    } else {
+      setPasswordErr("");
+    }
+
     try {
       const res = await axios.post("http://localhost:5000/api/user/signup", {
         email: data.email,
@@ -26,61 +40,50 @@ const SignUp = () => {
     }
   };
   return (
-    <div className="login mt-[20%] p-10 m-auto">
-      <h1 className="text-white text-3xl">Sign Up</h1>
-      <form>
-        <input
-          className="login w-full text-white mt-4 p-3 border-b-[2px] border-b-stone-100"
-          placeholder="Email address"
-          name="email"
-          type="email"
-          onChange={handleChange}
-          value={data.email}
-        ></input>
+    <div className="px-[8%] md:px-[20%] lg:px-[30%]">
+      <div className="login mt-[20%] p-10 m-auto">
+        <h1 className="text-white text-3xl">Sign Up</h1>
+        <form>
+          <div className="flex mt-4 py-3 border-b-[2px] border-b-stone-100">
+            <input
+              className="login w-full text-white  p-3 "
+              placeholder="Email address"
+              name="email"
+              type="email"
+              onChange={handleChange}
+              value={data.email}
+            ></input>
+            <small className="text-red-500 py-3">{emailErr}</small>
+          </div>
 
-        <input
-          className="login w-full text-white mt-2 p-3 border-b-[2px] border-b-stone-100"
-          placeholder="Password"
-          name="password"
-          type="password"
-          onChange={handleChange}
-          value={data.password}
-        ></input>
-        <button
-          className="mt-9 w-full bg-red-500 text-white p-2 mt-2 rounded"
-          type="submit"
-          onClick={handleSubmit}
-        >
-          Create an account
-        </button>
-        <p className="text-white mt-5 text-center">
-          Already have an account?{" "}
-          <button className="text-red-500">
-            <Link to="/Login">Login</Link>
+          <div className="flex mt-4 py-3 border-b-[2px] border-b-stone-100">
+            <input
+              className="login w-full text-white  p-3 "
+              placeholder="Password"
+              name="password"
+              type="password"
+              onChange={handleChange}
+              value={data.password}
+            ></input>
+            <small className="text-red-500 py-3">{passwordErr}</small>
+          </div>
+
+          <button
+            className="mt-8 w-full bg-red-500 text-white p-2 mt-2 rounded"
+            type="submit"
+            onClick={handleSubmit}
+          >
+            Create an account
           </button>
-        </p>
-      </form>
+          <p className="text-white mt-5 text-center">
+            Already have an account?{" "}
+            <button className="text-red-500 ml-1">
+              <Link to="/Login"> Login</Link>
+            </button>
+          </p>
+        </form>
+      </div>
     </div>
-    // <div>
-    //   <h1>signup</h1>
-    //   <form onSubmit={handleSubmit}>
-    //     <label>email</label>
-    //     <input
-    //       name="email"
-    //       type="email"
-    //       onChange={handleChange}
-    //       value={data.email}
-    //     ></input>
-    //     <label>password</label>
-    //     <input
-    //       name="password"
-    //       type="text"
-    //       onChange={handleChange}
-    //       value={data.password}
-    //     ></input>
-    //     <button type="submit">register</button>
-    //   </form>
-    // </div>
   );
 };
 
