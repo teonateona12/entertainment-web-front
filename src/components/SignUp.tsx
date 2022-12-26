@@ -5,9 +5,10 @@ import { Link, useNavigate } from "react-router-dom";
 const SignUp = () => {
   const [emailErr, setEmailErr] = useState("");
   const [passwordErr, setPasswordErr] = useState("");
+  const [selectedFile, setSelectedFile] = useState<any>(null);
 
   const navigate = useNavigate();
-  const [data, setData] = useState({
+  const [data, setData] = useState<any>({
     email: "",
     password: "",
   });
@@ -30,9 +31,11 @@ const SignUp = () => {
     }
 
     try {
+      //const data = new FormData;
       const res = await axios.post("http://localhost:5000/api/user/signup", {
         email: data.email,
         password: data.password,
+        avatar: selectedFile,
       });
       navigate("/");
     } catch (error) {
@@ -66,6 +69,15 @@ const SignUp = () => {
               value={data.password}
             ></input>
             <small className="text-red-500 py-3">{passwordErr}</small>
+          </div>
+
+          <div>
+            <input
+              type="file"
+              name="avatar"
+              value={selectedFile}
+              onChange={(e) => setSelectedFile(e.target.files)}
+            ></input>
           </div>
 
           <button

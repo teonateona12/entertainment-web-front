@@ -6,7 +6,7 @@ import Home from "./components/Home";
 
 function App() {
   return (
-    <div>
+    <div className="md:p-5">
       <Routes>
         <Route path="/login" element={<LogIn />} />
         <Route path="/signup" element={<SignUp />} />
