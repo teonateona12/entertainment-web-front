@@ -8,6 +8,11 @@ import axios from "axios";
 
 function App() {
   const [listItems, setListItems] = useState<any>([]);
+  const [trending, setTrending] = useState<any>([]);
+  const trendingItem = listItems.filter((item: any) => item.isTrending == true);
+  const recomendedItem = listItems.filter(
+    (item: any) => item.isTrending == false
+  );
   useEffect(() => {
     const getItemsList = async () => {
       const res = await axios.get(
@@ -22,7 +27,16 @@ function App() {
       <Routes>
         <Route path="/login" element={<LogIn />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/" element={<Home listItems={listItems} />} />
+        <Route
+          path="/"
+          element={
+            <Home
+              listItems={listItems}
+              trendingItem={trendingItem}
+              recomendedItem={recomendedItem}
+            />
+          }
+        />
       </Routes>
     </div>
   );
