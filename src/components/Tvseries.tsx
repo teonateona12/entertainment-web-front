@@ -13,7 +13,7 @@ const Tvseries = ({ inputValue, setInputValue, listItems }: Props) => {
   return (
     <div className="xl:flex ">
       <Header />
-      <div>
+      <div className="xl:w-[90%]">
         <div className="flex px-2 md:px-0 py-7 xl:w-full xl:p-[4%] ">
           <img src={search} />
           <input
@@ -25,7 +25,7 @@ const Tvseries = ({ inputValue, setInputValue, listItems }: Props) => {
         </div>
 
         <div className="px-4 xl:ml-10">
-          <h1 className="text-white">TV Series</h1>
+          <h1 className="text-white xl:text-3xl">TV Series</h1>
           {inputValue.length === 0 ? (
             <div className="flex flex-wrap gap-4">
               {allMovie.map((item: Item) => (
@@ -39,7 +39,7 @@ const Tvseries = ({ inputValue, setInputValue, listItems }: Props) => {
                     <p className="text-white text-xs">{item.category}</p>
                     <p className="text-white text-xs">{item.rating}</p>
                   </div>
-                  <p className="text-white">{item.title}</p>
+                  <p className="text-white xl:text-lg">{item.title}</p>
                 </div>
               ))}
               <div />

@@ -20,7 +20,7 @@ const Header = () => {
   };
 
   return (
-    <div className="flex justify-between bg-[#161D2F] h-full p-4 xl:w-[10%] xl:flex-col xl:h-[100vh] xl:justify-start md:rounded-md">
+    <div className="flex justify-between bg-[#161D2F] h-full p-4 xl:w-[7%] xl:flex-col  xl:justify-start md:rounded-md xl:h-auto">
       <img className="" src={logo} />
       <div className="flex h-full gap-3 xl:flex-col xl:h-10 xl:mt-[20vh] xl:mb-[60vh]">
         <img
