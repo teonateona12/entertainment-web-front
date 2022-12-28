@@ -1,10 +1,12 @@
-const TrendEndRecom = ({ trendingItem, recomendedItem }: any) => {
+import { Item, TrendEndRecProps } from "./types";
+
+const TrendEndRecom = ({ trendingItem, recomendedItem }: TrendEndRecProps) => {
   return (
     <div className="">
       <div className="px-4 xl:ml-10">
         <h1 className="text-white">Trending</h1>
         {/* <div className="flex  gap-4">
-          {trendingItem.map((item: any) => (
+          {trendingItem.map((item: Item) => (
             <div className=" mt-2 ">
               <img
                 className="rounded-lg"
@@ -25,7 +27,7 @@ const TrendEndRecom = ({ trendingItem, recomendedItem }: any) => {
       <div className="px-4 xl:ml-10">
         <h1 className="text-white">Recommended for you</h1>
         <div className="flex flex-wrap gap-4">
-          {recomendedItem.map((item: any) => (
+          {recomendedItem.map((item: Item) => (
             <div className=" mt-2 w-[45%] md:w-[30%] xl:w-[20%] ">
               <img
                 className="rounded-lg "

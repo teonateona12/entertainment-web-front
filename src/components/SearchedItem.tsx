@@ -1,10 +1,12 @@
-const SearchedItem = ({ listItems, inputValue }: any) => {
-  const searchedResult = listItems.filter((item: any) =>
+import { Item, SearchedItemProps } from "./types";
+
+const SearchedItem = ({ listItems, inputValue }: SearchedItemProps) => {
+  const searchedResult = listItems.filter((item: Item) =>
     item.title.includes(inputValue)
   );
   return (
     <div className="flex flex-wrap gap-4 px-4 xl:ml-10 xl:w-[90%]">
-      {searchedResult.map((item: any) => (
+      {searchedResult.map((item: Item) => (
         <div className=" mt-2 w-[45%] md:w-[30%] ">
           <img
             className="rounded-lg "

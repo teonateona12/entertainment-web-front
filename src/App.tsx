@@ -5,13 +5,20 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Movies from "./components/Movies";
+import Tvseries from "./components/Tvseries";
+import Bookmarked from "./components/Bookmarked";
+import { Item } from "./components/types";
 
 function App() {
-  const [listItems, setListItems] = useState<any>([]);
-  const [trending, setTrending] = useState<any>([]);
-  const trendingItem = listItems.filter((item: any) => item.isTrending == true);
+  const [listItems, setListItems] = useState<Item[]>([]);
+
+  const [inputValue, setInputValue] = useState("");
+  const trendingItem = listItems.filter(
+    (item: Item) => item.isTrending == true
+  );
   const recomendedItem = listItems.filter(
-    (item: any) => item.isTrending == false
+    (item: Item) => item.isTrending == false
   );
   useEffect(() => {
     const getItemsList = async () => {
@@ -28,12 +35,44 @@ function App() {
         <Route path="/login" element={<LogIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route
-          path="/"
+          path="/home"
           element={
             <Home
+              inputValue={inputValue}
+              setInputValue={setInputValue}
               listItems={listItems}
               trendingItem={trendingItem}
               recomendedItem={recomendedItem}
+            />
+          }
+        />
+        <Route
+          path="/movies"
+          element={
+            <Movies
+              inputValue={inputValue}
+              setInputValue={setInputValue}
+              listItems={listItems}
+            />
+          }
+        />
+        <Route
+          path="/tvseries"
+          element={
+            <Tvseries
+              inputValue={inputValue}
+              setInputValue={setInputValue}
+              listItems={listItems}
+            />
+          }
+        />
+        <Route
+          path="/bookmark"
+          element={
+            <Bookmarked
+              inputValue={inputValue}
+              setInputValue={setInputValue}
+              listItems={listItems}
             />
           }
         />

@@ -4,10 +4,15 @@ import Header from "./Header";
 import search from "../images/icon-search.svg";
 import TrendEndRecom from "./TrendEndRecom";
 import SearchedItem from "./SearchedItem";
+import { HomeProps } from "./types";
 
-const Home = ({ listItems, trendingItem, recomendedItem }: any) => {
-  const [inputValue, setInputValue] = useState("");
-
+const Home = ({
+  listItems,
+  trendingItem,
+  recomendedItem,
+  inputValue,
+  setInputValue,
+}: HomeProps) => {
   function capitalizeFirstLetter(string: string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
