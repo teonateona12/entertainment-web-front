@@ -46,12 +46,12 @@ const Header = ({ avatarUrl, setIsLogin }: HeaderProps) => {
           src={bookmark}
         />
       </div>
-      <div className="flex gap-3">
-        <button onClick={btnHeandler} className="text-white">
+      <div className="flex gap-3 xl:flex-col">
+        <button  onClick={btnHeandler} className="text-white xl:text-2xl">
           Logout
         </button>
         <img
-          className="w-10 h-10 xl:block  xl:w-28 rounded-full "
+          className="w-10 h-10 xl:block  xl:w-28 rounded-full xl:h-[60px] "
           src={`https://entertainment-web.onrender.com/avatar/${avatarUrl}`}
         />
       </div>

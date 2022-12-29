@@ -80,7 +80,7 @@ const SignUp = () => {
           </div>
 
           <button
-            className="mt-8 w-full bg-red-500 text-white p-2 mt-2 rounded"
+            className=" w-full bg-red-500 text-white p-2 mt-2 rounded"
             type="submit"
             onClick={(e) => handleSubmit(e)}
           >

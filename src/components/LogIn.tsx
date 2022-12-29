@@ -34,6 +34,7 @@ const LogIn = ({ setAvatarUrl, setIsLogin }: Login) => {
     } else {
       setPasswordErr("");
     }
+    navigate('/')
 
     try {
       const res = await axios.post(
@@ -81,7 +82,7 @@ const LogIn = ({ setAvatarUrl, setIsLogin }: Login) => {
           </div>
           <small className="text-red-500">{wrongEmailPas}</small>
           <button
-            className="mt-8 w-full bg-red-500 text-white p-2 mt-2 rounded"
+            className=" w-full bg-red-500 text-white p-2 mt-2 rounded"
             type="submit"
             onClick={handleSubmit}
           >
