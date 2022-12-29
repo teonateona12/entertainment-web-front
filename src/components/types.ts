@@ -19,12 +19,19 @@ export interface HomeProps {
   recomendedItem: Item[];
   inputValue: string;
   setInputValue: (n: string) => void;
+
+  avatarUrl: string;
+  setAvatarUrl: (n: string) => void;
+  setIsLogin: (n: boolean) => void;
 }
 
 export interface Props {
   inputValue: string;
   setInputValue: (n: string) => void;
   listItems: Item[];
+  avatarUrl: string;
+
+  setIsLogin: (n: boolean) => void;
 }
 export interface SearchedItemProps {
   inputValue: string;
@@ -34,4 +41,14 @@ export interface SearchedItemProps {
 export interface TrendEndRecProps {
   trendingItem: Item[];
   recomendedItem: Item[];
+}
+
+export interface HeaderProps {
+  avatarUrl: string;
+  setIsLogin: (n: boolean) => void;
+}
+
+export interface Login {
+  setIsLogin: (n: boolean) => void;
+  setAvatarUrl: (n: string) => void;
 }

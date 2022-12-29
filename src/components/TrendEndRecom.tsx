@@ -1,5 +1,7 @@
 import { Item, TrendEndRecProps } from "./types";
 import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
+import bookmark from "../images/icon-nav-bookmark.svg";
+
 import "@splidejs/react-splide/css";
 
 const TrendEndRecom = ({ trendingItem, recomendedItem }: TrendEndRecProps) => {
@@ -24,7 +26,7 @@ const TrendEndRecom = ({ trendingItem, recomendedItem }: TrendEndRecProps) => {
           >
             <div className="" style={{ position: "relative" }}>
               <SplideTrack className="w-[100%]">
-                {trendingItem.map((item): any => (
+                {trendingItem.map((item: Item) => (
                   <SplideSlide>
                     <div className=" mt-2 ">
                       <img

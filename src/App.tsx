@@ -1,4 +1,3 @@
-import React from "react";
 import LogIn from "./components/LogIn";
 import SignUp from "./components/SignUp";
 import { Routes, Route } from "react-router-dom";
@@ -12,8 +11,10 @@ import { Item } from "./components/types";
 
 function App() {
   const [listItems, setListItems] = useState<Item[]>([]);
+  const [avatarUrl, setAvatarUrl] = useState<string>("");
+  const [inputValue, setInputValue] = useState<string>("");
+  const [isLogin, setIsLogin] = useState<boolean>(false);
 
-  const [inputValue, setInputValue] = useState("");
   const trendingItem = listItems.filter(
     (item: Item) => item.isTrending == true
   );
@@ -29,53 +30,75 @@ function App() {
     };
     getItemsList();
   }, []);
+
   return (
     <div className="md:p-5">
       <Routes>
-        <Route path="/login" element={<LogIn />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route
-          path="/home"
-          element={
-            <Home
-              inputValue={inputValue}
-              setInputValue={setInputValue}
-              listItems={listItems}
-              trendingItem={trendingItem}
-              recomendedItem={recomendedItem}
+        {isLogin ? (
+          <>
+            <Route
+              path="/home"
+              element={
+                <Home
+                  inputValue={inputValue}
+                  setInputValue={setInputValue}
+                  listItems={listItems}
+                  trendingItem={trendingItem}
+                  recomendedItem={recomendedItem}
+                  avatarUrl={avatarUrl}
+                  setAvatarUrl={setAvatarUrl}
+                  setIsLogin={setIsLogin}
+                />
+              }
+            />{" "}
+            <Route
+              path="/movies"
+              element={
+                <Movies
+                  avatarUrl={avatarUrl}
+                  inputValue={inputValue}
+                  setInputValue={setInputValue}
+                  listItems={listItems}
+                  setIsLogin={setIsLogin}
+                />
+              }
+            />{" "}
+            <Route
+              path="/tvseries"
+              element={
+                <Tvseries
+                  avatarUrl={avatarUrl}
+                  inputValue={inputValue}
+                  setInputValue={setInputValue}
+                  listItems={listItems}
+                  setIsLogin={setIsLogin}
+                />
+              }
             />
-          }
-        />
-        <Route
-          path="/movies"
-          element={
-            <Movies
-              inputValue={inputValue}
-              setInputValue={setInputValue}
-              listItems={listItems}
+            <Route
+              path="/bookmark"
+              element={
+                <Bookmarked
+                  avatarUrl={avatarUrl}
+                  inputValue={inputValue}
+                  setInputValue={setInputValue}
+                  listItems={listItems}
+                  setIsLogin={setIsLogin}
+                />
+              }
+            />{" "}
+          </>
+        ) : (
+          <>
+            <Route
+              path="/"
+              element={
+                <LogIn setAvatarUrl={setAvatarUrl} setIsLogin={setIsLogin} />
+              }
             />
-          }
-        />
-        <Route
-          path="/tvseries"
-          element={
-            <Tvseries
-              inputValue={inputValue}
-              setInputValue={setInputValue}
-              listItems={listItems}
-            />
-          }
-        />
-        <Route
-          path="/bookmark"
-          element={
-            <Bookmarked
-              inputValue={inputValue}
-              setInputValue={setInputValue}
-              listItems={listItems}
-            />
-          }
-        />
+            <Route path="/signup" element={<SignUp />} />
+          </>
+        )}
       </Routes>
     </div>
   );

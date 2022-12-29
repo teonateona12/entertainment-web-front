@@ -2,8 +2,9 @@ import { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import "../index.css";
+import { Login } from "./types";
 
-const LogIn = () => {
+const LogIn = ({ setAvatarUrl, setIsLogin }: Login) => {
   const navigate = useNavigate();
 
   const [emailErr, setEmailErr] = useState("");
@@ -19,7 +20,9 @@ const LogIn = () => {
     setData({ ...data, [input.name]: input.value });
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
     e.preventDefault();
     if (data.email === "") {
       setEmailErr("Can’t be empty");
@@ -33,12 +36,16 @@ const LogIn = () => {
     }
 
     try {
-      const res = await axios.post("http://localhost:5000/api/user/login", {
-        email: data.email,
-        password: data.password,
-      });
-
-      navigate("/");
+      const res = await axios.post(
+        "https://entertainment-web.onrender.com/api/user/login",
+        {
+          email: data.email,
+          password: data.password,
+        }
+      );
+      setAvatarUrl(res.data.avatar);
+      setIsLogin(true);
+      navigate("/home");
     } catch (error) {
       console.log(error);
       setWrongEmailPas("Wrong email or password");

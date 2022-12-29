@@ -1,5 +1,3 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
 import Header from "./Header";
 import search from "../images/icon-search.svg";
 import TrendEndRecom from "./TrendEndRecom";
@@ -12,6 +10,8 @@ const Home = ({
   recomendedItem,
   inputValue,
   setInputValue,
+  avatarUrl,
+  setIsLogin,
 }: HomeProps) => {
   function capitalizeFirstLetter(string: string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -19,7 +19,7 @@ const Home = ({
 
   return (
     <div className="xl:flex ">
-      <Header />
+      <Header avatarUrl={avatarUrl} setIsLogin={setIsLogin} />
       <div className="xl:w-[90%]">
         <div className="flex px-2 md:px-0 py-7 xl:w-full xl:p-[4%] ">
           <img src={search} />

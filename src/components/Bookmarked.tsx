@@ -1,16 +1,22 @@
 import Header from "./Header";
 import search from "../images/icon-search.svg";
 import SearchedItem from "./SearchedItem";
-import { Props } from "./types";
+import { Item, Props } from "./types";
 
-const Bookmarked = ({ inputValue, setInputValue, listItems }: Props) => {
+const Bookmarked = ({
+  inputValue,
+  setInputValue,
+  listItems,
+  avatarUrl,
+  setIsLogin,
+}: Props) => {
   function capitalizeFirstLetter(string: string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
-  const allMovie = listItems.filter((item: any) => item.isBookmarked === true);
+  const allMovie = listItems.filter((item: Item) => item.isBookmarked === true);
   return (
     <div className="xl:flex ">
-      <Header />
+      <Header avatarUrl={avatarUrl} setIsLogin={setIsLogin} />
       <div className="xl:w-[90%]">
         <div className="flex px-2 md:px-0 py-7 xl:w-full xl:p-[4%] ">
           <img src={search} />
@@ -26,11 +32,11 @@ const Bookmarked = ({ inputValue, setInputValue, listItems }: Props) => {
           <h1 className="text-white xl:text-3xl">Bookmarked Movies</h1>
           {inputValue.length === 0 ? (
             <div className="flex flex-wrap gap-4">
-              {allMovie.map((item: any) => (
+              {allMovie.map((item: Item) => (
                 <div className=" mt-2 w-[45%] md:w-[30%] xl:w-[20%] ">
                   <img
                     className="rounded-lg "
-                    src={`http://entertainment-web.onrender.com/images/${item.regularSmall}`}
+                    src={`https://entertainment-web.onrender.com/images/${item.regularSmall}`}
                   ></img>
                   <div className="flex gap-1 mt-3">
                     <p className="text-white text-xs">{item.year}</p>

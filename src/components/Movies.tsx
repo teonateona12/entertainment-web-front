@@ -3,15 +3,22 @@ import search from "../images/icon-search.svg";
 import SearchedItem from "./SearchedItem";
 import { Props, Item } from "./types";
 
-const Movies = ({ inputValue, setInputValue, listItems }: Props) => {
+const Movies = ({
+  inputValue,
+  setInputValue,
+  listItems,
+  avatarUrl,
+
+  setIsLogin,
+}: Props) => {
   function capitalizeFirstLetter(string: string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
-  const allMovie = listItems.filter((item: any) => item.category === "Movie");
+  const allMovie = listItems.filter((item: Item) => item.category === "Movie");
 
   return (
     <div className="xl:flex ">
-      <Header />
+      <Header avatarUrl={avatarUrl} setIsLogin={setIsLogin} />
       <div className="xl:w-[90%]">
         <div className="flex px-2 md:px-0 py-7 xl:w-full xl:p-[4%] ">
           <img src={search} />
